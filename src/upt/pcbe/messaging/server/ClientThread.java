@@ -6,6 +6,8 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.Socket;
 
+import upt.pcbe.messaging.shared.Message;
+
 public class ClientThread extends Thread {
     private Socket socket;
 

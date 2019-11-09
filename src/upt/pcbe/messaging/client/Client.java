@@ -1,4 +1,4 @@
-package upt.pcbe.messaging.server;
+package upt.pcbe.messaging.client;
 
 import java.io.BufferedReader;
 import java.io.DataInputStream;

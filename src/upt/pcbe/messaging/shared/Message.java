@@ -1,4 +1,4 @@
-package upt.pcbe.messaging.server;
+package upt.pcbe.messaging.shared;
 
 public class Message {
 

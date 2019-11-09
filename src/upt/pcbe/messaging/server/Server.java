@@ -7,6 +7,8 @@ import java.net.Socket;
 import java.util.HashMap;
 import java.util.concurrent.ConcurrentLinkedQueue;
 
+import upt.pcbe.messaging.shared.Message;
+
 public class Server {
     private static final int port = 1338;
     private static int counter = 0;

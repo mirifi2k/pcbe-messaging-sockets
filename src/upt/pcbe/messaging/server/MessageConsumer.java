@@ -2,6 +2,8 @@ package upt.pcbe.messaging.server;
 
 import java.io.IOException;
 
+import upt.pcbe.messaging.shared.Message;
+
 public class MessageConsumer extends Thread {
 
     @Override
