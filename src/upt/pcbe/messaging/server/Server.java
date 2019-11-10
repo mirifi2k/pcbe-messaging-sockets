@@ -4,7 +4,7 @@ import java.io.DataOutputStream;
 import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
-import java.util.HashMap;
+import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentLinkedQueue;
 
 import upt.pcbe.messaging.shared.Message;
@@ -13,7 +13,7 @@ public class Server {
     private static final int port = 1338;
     private static int counter = 0;
 
-    private static HashMap<Integer, DataOutputStream> clients = new HashMap<Integer, DataOutputStream>();
+    public static ConcurrentHashMap<Integer, DataOutputStream> clients = new ConcurrentHashMap<Integer, DataOutputStream>();
     public static ConcurrentLinkedQueue<Message> queue = new ConcurrentLinkedQueue<Message>();
 
     public static void main(String[] args) {
@@ -41,9 +41,5 @@ public class Server {
             e.printStackTrace();
         }
         // serverSocket.close();
-    }
-
-    public static synchronized HashMap<Integer, DataOutputStream> getClients() {
-        return clients;
     }
 }

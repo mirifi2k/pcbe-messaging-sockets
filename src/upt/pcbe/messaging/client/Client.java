@@ -26,12 +26,12 @@ public class Client {
                     while (true) {
                         try {
                             line = br.readLine();
-
+                            System.out.println("client received :" + line);
                             if (line.equals("exit")) {
                                 socket.close();
                                 break;
                             } else if (line.startsWith("message:")) {
-//                                Message msg = Message.contructMessage(line);
+                                // Message msg = Message.contructMessage(line);
                                 out.writeUTF(line);
                                 out.flush();
                                 // System.out.println("Send msg to server: " + msg);

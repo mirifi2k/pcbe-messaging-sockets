@@ -1,5 +1,6 @@
 package upt.pcbe.messaging.server;
 
+import java.io.DataOutputStream;
 import java.io.IOException;
 
 import upt.pcbe.messaging.shared.Message;
@@ -16,17 +17,30 @@ public class MessageConsumer extends Thread {
                     System.out.println("Consumming " + msg.toString());
                     consumeMessage(msg);
                 }
-                Thread.sleep(1000);
-            } catch (InterruptedException e) {
+//                Thread.sleep(1000);
+            } catch (Throwable e) {
+                System.out.println("Could not sleep");
                 e.printStackTrace();
             }
         }
     }
 
-    private void consumeMessage(Message msg) {
+    private void consumeMessage(Message msg) throws InterruptedException {
         try {
-            Server.getClients().get(msg.getReceiver()).writeUTF(msg.getMessage());
-            Server.getClients().get(msg.getReceiver()).flush();
+            DataOutputStream receiver = Server.clients.get(msg.getReceiver());
+            if (receiver != null) {
+                receiver.writeUTF(msg.getMessage());
+                receiver.flush();
+            } else {
+                System.out.println("Client " + msg.getReceiver() + " not found. Sleep 1s");
+                Thread.sleep(1000);
+                receiver = Server.clients.get(msg.getReceiver());
+                if (receiver != null) {
+                    receiver.writeUTF(msg.getMessage());
+                    receiver.flush();
+                } else
+                    System.out.println("Client not found." + msg.toString());
+            }
         } catch (IOException e) {
             System.out.println("Could not sent message");
             e.printStackTrace();
