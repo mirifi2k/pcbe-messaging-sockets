@@ -30,8 +30,7 @@ public class Client {
                             if (line.equals("exit")) {
                                 socket.close();
                                 break;
-                            } else if (line.startsWith("message:")) {
-//                                Message msg = Message.contructMessage(line);
+                            } else  {
                                 out.writeUTF(line);
                                 out.flush();
                                 // System.out.println("Send msg to server: " + msg);
