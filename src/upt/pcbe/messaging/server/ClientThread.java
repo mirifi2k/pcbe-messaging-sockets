@@ -22,9 +22,8 @@ public class ClientThread extends Thread {
 
     @Override
     public void run() {
-        // DataOutputStream out = null;
-        DataInputStream in = null;
         DataOutputStream out = null;
+        DataInputStream in = null;
 
         try {
             in = new DataInputStream(socket.getInputStream());
