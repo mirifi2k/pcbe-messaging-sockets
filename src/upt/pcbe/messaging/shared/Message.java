@@ -4,10 +4,12 @@ public class Message {
 
     private String message;
     private int receiver;
+    private int sender;
 
-    public Message(String message, int receiver) {
+    public Message(String message, int sender, int receiver) {
         this.message = message;
         this.receiver = receiver;
+        this.sender = sender;
     }
 
     public String getMessage() {
@@ -21,6 +23,10 @@ public class Message {
     public int getReceiver() {
         return receiver;
     }
+    
+    public int getSender() {
+    	return this.sender;
+    }
 
     public void setReceiver(int receiver) {
         this.receiver = receiver;
@@ -29,16 +35,19 @@ public class Message {
     public String toString() {
         return "message:" + String.valueOf(receiver) + ":" + message;
     }
+    
+    public String returnMessageFormat() {
+    	return "You've received a new message from client ID " + sender + ": " + message;
+    }
 
-    public static Message contructMessage(String line) {
+    public static Message contructMessage(String message, int sender, int receiver) {
         try {
-            // do not use : in message, it will get trimmed
-            int receiver = Integer.valueOf(line.split(":")[1]);
-            String message = line.split(":")[2];
-            return new Message(message, receiver);
+        	return new Message(message, sender, receiver);
         } catch (Throwable t) {
-            System.out.println("Message Error. Syntax->message:<number>:<message>");
-            return null;
+            System.err.println("[debug] probably incorrect syntax is used!");
+            t.printStackTrace();
         }
+        
+        return null;
     }
 }
