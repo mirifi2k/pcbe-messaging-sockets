@@ -30,7 +30,6 @@ public class Client {
                         try {
                             line = br.readLine();
 
-<<<<<<< HEAD
                             if (line.startsWith("/")) {
                             	if (line.equals("/exit")) {
                             		socket.close();
@@ -58,16 +57,6 @@ public class Client {
                             			}
                             		}
                             	}
-=======
-                            if (line.equals("exit")) {
-                                socket.close();
-                                break;
-                            } else  {
-                                out.writeUTF(line);
-                                out.flush();
-                                // System.out.println("Send msg to server: " + msg);
->>>>>>> 3644a4f6fc50967f3866a0730dd195eecf78b2e7
-                            }
                         } catch (Throwable t) {
                             System.out.println("Error in read thread");
                             t.printStackTrace();
