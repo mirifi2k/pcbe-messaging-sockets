@@ -1,5 +1,7 @@
 package upt.pcbe.messaging.shared;
 
+import upt.pcbe.messaging.server.Server;
+
 import java.util.Date;
 
 public class TopicMessage {
@@ -53,6 +55,7 @@ public class TopicMessage {
     }
 
     public boolean isTopicExpired() {
-        return (delay < new Date().getTime() - this.creationTime.getTime());
+        long time = new Date().getTime() - this.creationTime.getTime();
+        return (delay < time || Server.maxMessageDuration < time);
     }
 }
