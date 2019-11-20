@@ -57,8 +57,8 @@ public class Client {
                             			}
                             		}
                             	}
+                            }
                         } catch (Throwable t) {
-                            System.out.println("Error in read thread");
                             t.printStackTrace();
                         }
                     }
