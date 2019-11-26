@@ -5,6 +5,7 @@ import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.HashMap;
 import java.util.List;
+import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentLinkedQueue;
 
 import upt.pcbe.messaging.shared.Message;
@@ -16,7 +17,7 @@ public class Server {
 
     private static HashMap<Integer, Socket> clients = new HashMap<>();
     public static ConcurrentLinkedQueue<Message> queue = new ConcurrentLinkedQueue<Message>();
-    public static HashMap<String, List<TopicMessage>> topics = new HashMap<>();
+    public static ConcurrentHashMap<String, List<TopicMessage>> topics = new ConcurrentHashMap<>();
     public static final int maxMessageDuration = 60000;
     
     public static boolean isReceiverConnected(int receiver) {
